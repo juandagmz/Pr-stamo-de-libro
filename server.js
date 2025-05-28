@@ -17,6 +17,7 @@ app.post('/enviar', (req, res) => {
   // si todo está bien, crear archivo .txt
   const contenido = `ID: ${id}\nNombre: ${nombre} ${apellido}\nTítulo: ${titulo}\nAutor: ${autor}\nEditorial: ${editorial}\nAño: ${año}`;
   const nombreArchivo = `libro_${id}.txt`;
+  const rutaArchivo = path.join(__dirname, 'data', nombreArchivo);
 
   fs.writeFile(nombreArchivo, contenido, (err) => {
     if (err) {
