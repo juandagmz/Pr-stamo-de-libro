@@ -9,6 +9,10 @@ app.use(express.static('public'));
 
 app.post('/enviar', (req, res) => {
   const { id, nombre, apellido, titulo, autor, editorial, año } = req.body;
+ 
+  if (!id || !nombre || !apellido || !titulo || !autor || !editorial || !año) {
+    return res.sendFile(path.join(__dirname, 'public', 'error.html'));
+  }
 
   const contenido = `${id}, ${nombre}, ${apellido}, ${titulo}, ${autor}, ${editorial}, ${año}`;
   const nombreArchivo = `id_${id}.txt`;
